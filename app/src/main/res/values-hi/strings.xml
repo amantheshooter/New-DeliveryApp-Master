@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">स्थान की जानकारी</string>
+    <string name="location_text">स्थान</string>
+    <string name="title_activity_maps">स्थान का विवरण</string>
+    <string name="retry">पुन: प्रयास करें</string>
+    <string name="check_internet">अपने इंटरनेट कनेक्शन की जाँच करें और पुन: प्रयास करें।</string>
+    <string name="no_data_found">अधिक डेटा उपलब्ध नहीं है।</string>
+    <string name="at">&#160;पर&#160;</string>
+    <string name="location_image_content_description">छवि स्थान के लिए सेट की गई है</string>
+</resources>

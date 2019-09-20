@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_name_size">22sp</dimen>
+    <dimen name="text_error_size">16sp</dimen>
+    <dimen name="card_view_margin">4dp</dimen>
+    <dimen name="card_view_corner_radius">4dp</dimen>
+    <dimen name="progressbar_padding">8dp</dimen>
+    <dimen name="item_location_description_margin">12dp</dimen>
+    <dimen name="image_location_width_height">100dp</dimen>
+</resources>

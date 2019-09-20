@@ -1,0 +1,117 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'co.location.locationapp.utils.OpenClass'
+}
+
+android {
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.location.delivery_app"
+        minSdkVersion rootProject.ext.minSDKVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        compileSdkVersion rootProject.ext.compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        buildConfigField("int", "PAGE_SIZE", PAGE_SIZE)
+        buildConfigField("float", "GOOGLE_MAP_ZOOM", GOOGLE_MAP_ZOOM)
+        resValue "string", "google_map_key", google_map_key
+    }
+    buildTypes {
+        debug {
+            buildConfigField 'String', 'URL', DEBUG_URL
+        }
+        release {
+            buildConfigField 'String', 'URL', DEBUG_URL
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //android libs
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintLayoutVersion}"
+    implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerview}"
+    implementation "androidx.cardview:cardview:${rootProject.ext.cardview}"
+    implementation "com.google.android.material:material:${rootProject.ext.materialview}"
+    //moshi
+    implementation "com.squareup.moshi:moshi-kotlin:${rootProject.ext.moshiKotlinVersion}"
+    implementation "com.squareup.moshi:moshi-adapters:${rootProject.ext.moshiKotlinVersion}"
+
+    //google map
+    implementation "com.google.android.gms:play-services-maps:${rootProject.ext.playServicesMap}"
+
+    //dagger2
+    implementation "com.google.dagger:dagger-android:${rootProject.ext.dagger2Version}"
+    kapt "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
+    kapt "com.google.dagger:dagger-android-processor:${rootProject.ext.dagger2Version}"
+    //Room
+    implementation "androidx.room:room-runtime:${rootProject.ext.roomRunTime}"
+    implementation "androidx.room:room-rxjava2:${rootProject.ext.rxJava2Version}"
+    kapt "androidx.room:room-compiler:${rootProject.ext.roomCompiler}"
+    //Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.androidXLifeCycle}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${rootProject.ext.androidXLifeCycle}"
+    //RxJava 2 LiveData
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:${rootProject.ext.androidXLifeCycle}"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-moshi:${rootProject.ext.moshiConverterVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.rxJavaAdapterVersion}"
+    //RxJava RxAndroid
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava2Version}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+
+
+    implementation "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
+    kapt "com.github.bumptech.glide:compiler:${rootProject.ext.glideVersion}"
+
+    kapt "com.android.databinding:compiler:$dataBindingCompilerVersion"
+
+
+    /*Paging*/
+
+    implementation "android.arch.paging:runtime:${rootProject.ext.pagingRunTime}"
+
+    //test implementation
+    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
+    androidTestImplementation "androidx.test:runner:${rootProject.ext.testRunnerVersion}"
+    androidTestImplementation "androidx.test.ext:junit:${rootProject.ext.testExtension}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.espressoCore}"
+    androidTestImplementation "androidx.test:rules:${rootProject.ext.testRules}"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:${rootProject.ext.espressoContrib}"
+
+    testImplementation "android.arch.core:core-testing:${rootProject.ext.coreTesting}"
+    testImplementation "org.mockito:mockito-inline:${rootProject.ext.mockitoInline}"
+    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockitoCore}"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${rootProject.ext.mockitoKotlin}"
+
+    androidTestImplementation 'org.mockito:mockito-android:2.25.0'
+    androidTestImplementation "android.arch.core:core-testing:${rootProject.ext.coreTesting}"
+
+    kaptAndroidTest "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
+    androidTestImplementation "com.squareup.okhttp:mockwebserver:${rootProject.ext.mockWebServer}"
+    testImplementation "com.squareup.okhttp:mockwebserver:${rootProject.ext.mockWebServer}"
+}
+

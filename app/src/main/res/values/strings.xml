@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Location Info</string>
+    <string name="location_text">Location</string>
+    <string name="title_activity_maps">Location Details</string>
+    <string name="retry">Retry</string>
+    <string name="check_internet">Please check your internet connection and try again.</string>
+    <string name="no_data_found">No more data available.</string>
+    <string name="at">&#160;at&#160;</string>
+    <string name="location_image_content_description">image is set for deliveryLocation</string>
+</resources>

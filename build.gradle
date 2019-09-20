@@ -1,0 +1,68 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.3.41'
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:1.3.41"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+ext {
+    //app
+    compileSdkVersion = 29
+    minSDKVersion = 21
+    targetSdkVersion = 29
+    constraintLayoutVersion = "1.1.3"
+    moshiKotlinVersion = "1.8.0"
+    dagger2Version = "2.19"
+    retrofitVersion = "2.3.0"
+    moshiConverterVersion = "2.3.0"
+    rxJavaAdapterVersion = "2.3.0"
+    rxAndroidVersion = "2.1.0"
+    rxJava2Version = "2.1.0"
+    glideVersion = "4.4.0"
+    dataBindingCompilerVersion ="3.1.0-alpha06"
+    playServicesMap="17.0.0"
+    appcompat="1.0.2"
+    recyclerview="1.0.0"
+    cardview="1.0.0"
+    materialview="1.0.0"
+    roomRunTime ="2.1.0"
+    roomCompiler ="2.1.0"
+    androidXLifeCycle = "2.0.0"
+    pagingRunTime ="1.1.1"
+
+
+    //test
+    junitVersion = "4.12"
+    testRunnerVersion = "1.2.0"
+    testEspressoVersion = "3.0.1"
+    testExtension="1.1.1"
+    espressoCore = "3.2.0"
+    testRules = "1.2.0"
+    espressoContrib="3.2.0"
+    coreTesting = "1.1.1"
+    mockitoInline ="2.8.47"
+    mockitoKotlin = "2.0.0-RC3"
+    mockitoCore = "2.25.0"
+    mockWebServer = "2.7.5"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
