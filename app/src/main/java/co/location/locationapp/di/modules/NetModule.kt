@@ -1,5 +1,6 @@
 package co.location.locationapp.di.modules
 
+import co.location.locationapp.BuildConfig
 import co.location.locationapp.data.source.LocationRepository
 import co.location.locationapp.data.source.local.LocationDataDao
 import co.location.locationapp.data.source.remote.ApiInterface
@@ -18,7 +19,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class NetModule(private val baseUrl: String) {
+class NetModule() {
 
     @Provides
     @Singleton
@@ -40,7 +41,7 @@ class NetModule(private val baseUrl: String) {
     @Singleton
     fun providesRetrofit(factory: Converter.Factory, okHttpClient: OkHttpClient, rxJava2AdapterFactory: CallAdapter.Factory)
             : Retrofit {
-        return Builder().client(okHttpClient).baseUrl(baseUrl)
+        return Builder().client(okHttpClient).baseUrl(BuildConfig.URL)
                 .addConverterFactory(factory)
                 .addCallAdapterFactory(rxJava2AdapterFactory)
                 .build()

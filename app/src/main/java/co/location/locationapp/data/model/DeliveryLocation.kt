@@ -1,5 +1,6 @@
 package co.location.locationapp.data.model
 
+import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
@@ -12,7 +13,7 @@ import kotlinx.android.parcel.Parcelize
         tableName = "location"
 )
 @Parcelize
-data class DeliveryLocation(
+data class DeliveryLocation (
 
         @Json(name = "id")
         @PrimaryKey

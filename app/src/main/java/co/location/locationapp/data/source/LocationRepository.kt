@@ -8,10 +8,10 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class LocationRepository @Inject
+open class LocationRepository @Inject
 constructor(private val apiInterface: ApiInterface, private val locationDataDao: LocationDataDao) {
 
-    fun getLocationData(isPullToRefresh: Boolean, limit: Int, offset: Int): Observable<List<DeliveryLocation>> =
+    open fun getLocationData(isPullToRefresh: Boolean, limit: Int, offset: Int): Observable<List<DeliveryLocation>> =
             when {
                 isPullToRefresh -> getLocationDataFromApi(isPullToRefresh, limit, offset)
                 else -> getLocationDataFromDb(limit, offset)
@@ -20,7 +20,7 @@ constructor(private val apiInterface: ApiInterface, private val locationDataDao:
                         }
             }
 
-    fun getLocationDataFromApi(isPullToRefresh: Boolean, limit: Int, offset: Int): Observable<List<DeliveryLocation>> =
+    open fun getLocationDataFromApi(isPullToRefresh: Boolean, limit: Int, offset: Int): Observable<List<DeliveryLocation>> =
             apiInterface.getLocationData(offset, limit)
                     .toObservable()
                     .doOnNext {
@@ -32,7 +32,7 @@ constructor(private val apiInterface: ApiInterface, private val locationDataDao:
                         }
                     }
 
-    fun getLocationDataFromDb(limit: Int, offset: Int): Observable<List<DeliveryLocation>> =
+    open fun getLocationDataFromDb(limit: Int, offset: Int): Observable<List<DeliveryLocation>> =
             locationDataDao.queryLocationData(limit, offset)
                     .toObservable()
                     .subscribeOn(Schedulers.io())

@@ -100,7 +100,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun locationItemClicked(deliveryLocationItem: DeliveryLocation?) {
         val intent = Intent(this, MapsActivity::class.java)
-        intent.putExtra(Constants.OBJECT, deliveryLocationItem)
+        intent.putExtra(Constants.INTENT_KEY, deliveryLocationItem)
         startActivity(intent)
     }
 

@@ -22,7 +22,7 @@ open class LocationApplication : Application(), HasActivityInjector {
         super.onCreate()
         DaggerAppComponent.builder()
                 .appModule(AppModule(this))
-                .netModule(NetModule(Constants.BASE_URL))
+                .netModule(NetModule())
                 .databaseModule(DatabaseModule())
                 .build().inject(this)
     }

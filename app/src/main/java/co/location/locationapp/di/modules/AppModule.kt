@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 
 @Module
-class AppModule(val app: Application) {
+open class AppModule(val app: Application) {
 
     @Provides
     @Singleton

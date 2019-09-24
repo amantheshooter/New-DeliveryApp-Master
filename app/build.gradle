@@ -16,6 +16,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common"
+        test.java.srcDirs += "src/test-common"
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+        animationsDisabled = true
+        //used for mockito
+        unitTests.returnDefaultValues = true
+    }
 
     defaultConfig {
         applicationId "com.location.delivery_app"
@@ -25,6 +37,7 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+        testInstrumentationRunner "co.location.locationapp.runner.MockRunner"
         buildConfigField("int", "PAGE_SIZE", PAGE_SIZE)
         buildConfigField("float", "GOOGLE_MAP_ZOOM", GOOGLE_MAP_ZOOM)
         resValue "string", "google_map_key", google_map_key

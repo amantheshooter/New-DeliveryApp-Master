@@ -17,7 +17,7 @@ class MapsActivity : AppCompatActivity() {
         val binding: ActivityMapsBinding = DataBindingUtil.setContentView(this, R.layout.activity_maps)
         setSupportActionBar(binding.toolbar.toolbar)
 
-        val locationModal = intent.getParcelableExtra(Constants.OBJECT) as DeliveryLocation
+        val locationModal = intent.getParcelableExtra(Constants.INTENT_KEY) as DeliveryLocation
         binding.deliveryLocationItem= locationModal
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
